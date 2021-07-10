@@ -41,6 +41,8 @@ fi
 if [ -z $PAT_STRING ]; then
   echo 'Required paramater PAT_STRING not passed'
   exit 1
+else
+  echo "PAT STRING: ${PAT_STRING}"
 fi
 
 IMAGE=$REPOSITORY:$TAG
@@ -48,8 +50,8 @@ if [ -n "$REGISTRY" ]; then
   IMAGE=$REGISTRY/$IMAGE
 fi
 
-git config --global credential.helper store && echo "$PAT_STRING" > ~/.git-credentials
-docker build -e PAT_STRING="$PAT_STRING" -t $IMAGE .
+git config --global credential.helper store && echo "${PAT_STRING}" > ~/.git-credentials
+docker build -t $IMAGE .
 #docker login --username "$USERNAME" --password "$PASSWORD" $REGISTRY
 #docker push $IMAGE
 
