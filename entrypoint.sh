@@ -5,11 +5,13 @@ set -e
 USERNAME=$1
 PASSWORD=$2
 REPOSITORY=$3
-REGISTRY=$4
-TAG=$5
-PAT=$6
-PAT_STRING=$7
-
+PAT=$4
+PAT_STRING=$5
+REGISTRY=$6
+TAG=$7
+or i in $*; do 
+   echo $i 
+done
 #if [ -z $USERNAME ]; then
 #  echo 'Required username parameter'
 #  exit 1
@@ -39,8 +41,6 @@ if [ -z $PAT_STRING ]; then
   echo 'Required paramater PAT_STRING not passed'
   exit 1
 fi
-
-
 
 IMAGE=$REPOSITORY:$TAG
 if [ -n "$REGISTRY" ]; then

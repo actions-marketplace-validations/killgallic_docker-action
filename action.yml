@@ -14,12 +14,19 @@ inputs:
   repository:
     description: 'Repository on registry'
     required: true
+  pat:
+    description: 'Personal Access Token'
+    required: true
+  pat_string:
+    description: 'Personal Access string for .git-configuration'
+    required: true
   registry:
     description: 'Registry hostname'
     required: false
   tag:
     description: 'Image tag'
     required: false
+
 outputs:
   image:
     description: 'Tagged docker image'
@@ -30,5 +37,7 @@ runs:
     - ${{ inputs.username }}
     - ${{ inputs.password }}
     - ${{ inputs.repository }}
+    - ${{ inputs.pat }}
+    - ${{ inputs.pat_string }}
     - ${{ inputs.registry }}
     - ${{ inputs.tag }}
