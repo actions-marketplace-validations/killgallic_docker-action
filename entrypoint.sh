@@ -50,8 +50,7 @@ if [ -n "$REGISTRY" ]; then
   IMAGE=$REGISTRY/$IMAGE
 fi
 
-git config --global credential.helper store && echo "${PAT_STRING}" > ~/.git-credentials
-docker build -t $IMAGE .
+docker build --build-arg PAT_STRING=$PAT_STRING -t $IMAGE .
 #docker login --username "$USERNAME" --password "$PASSWORD" $REGISTRY
 #docker push $IMAGE
 
