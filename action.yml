@@ -1,9 +1,9 @@
-name: 'Docker Action'
-description: 'GitHub Actions for build and publish Docker Image'
-author: 'Yeongjin Lee <yeongjinnn@gmail.com>'
+name: 'Fluidity Docker Action'
+description: 'Builds a docker container using github'
+author: 'its'
 branding:
   icon: 'package'
-  color: 'blue'
+  color: 'purple'
 inputs:
   username:
     description: 'Registry username'
