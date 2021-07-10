@@ -8,15 +8,15 @@ REPOSITORY=$3
 REGISTRY=$4
 TAG=$5
 
-if [ -z $USERNAME ]; then
-  echo 'Required username parameter'
-  exit 1
-fi
+#if [ -z $USERNAME ]; then
+#  echo 'Required username parameter'
+#  exit 1
+#fi
 
-if [ -z $PASSWORD ]; then
-  echo 'Required password parameter'
-  exit 1
-fi
+#if [ -z $PASSWORD ]; then
+#  echo 'Required password parameter'
+#  exit 1
+#fi
 
 if [ -z $REPOSITORY ]; then
   echo 'Required repository parameter'
@@ -35,7 +35,7 @@ if [ -n "$REGISTRY" ]; then
 fi
 
 docker build -t $IMAGE .
-docker login --username "$USERNAME" --password "$PASSWORD" $REGISTRY
-docker push $IMAGE
+#docker login --username "$USERNAME" --password "$PASSWORD" $REGISTRY
+#docker push $IMAGE
 
 echo ::set-output name=image::$IMAGE
