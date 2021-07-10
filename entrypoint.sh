@@ -9,7 +9,8 @@ PAT=$4
 PAT_STRING=$5
 REGISTRY=$6
 TAG=$7
-or i in $*; do 
+
+for i in $*; do 
    echo $i 
 done
 #if [ -z $USERNAME ]; then
