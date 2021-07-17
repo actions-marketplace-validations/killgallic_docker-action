@@ -43,7 +43,7 @@ if [ -n "$REGISTRY" ]; then
   IMAGE=$REGISTRY/$IMAGE # Temporary until an SPY-DOT-DEV container registry is setup
 fi
 echo "IMAGE Before: $IMAGE"
-$TEMP_IMAGE=$( echo $IMAGE | sed -i 's/^(.?)*\//itstilde\//')
+$TEMP_IMAGE=$( echo $IMAGE | sed 's/^(.?)*\//itstilde\//')
 echo "TMP_IMAGE: $TEMP_IMAGE"
 #IMAGE="$REGISTRY/$TEMP_IMAGE"
 
