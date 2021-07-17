@@ -35,6 +35,7 @@ if [[ -z $TAG ]]; then
   echo 'Tag to snapshot'
   TAG=$(date '+%Y%m%d%H%M%S') # Default tag name if not supplied, not a requirement
 fi
+echo $TAG
 
 # Set image name
 IMAGE=$REPOSITORY:$TAG
