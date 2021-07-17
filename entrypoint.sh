@@ -37,9 +37,9 @@ if [ -z $PAT_STRING ]; then
   exit 1
 fi
 
-if [[ -z $TAG ]]; then
-  echo 'Tag to snapshot'
-  TAG=$(date '+%Y%m%d%H%M%S') # Default tag name if not supplied, not a requirement
+if [[ "$TAG" =~ .*"refs/heads/".* ]]; then
+  # If no actual tag, call it latest
+  TAG="latest"
 fi
 
 # Set image name
