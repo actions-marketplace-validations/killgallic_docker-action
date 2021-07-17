@@ -14,5 +14,4 @@ RUN apk update \
   && apk add --no-cache git bash
 
 COPY entrypoint.sh /entrypoint.sh
-ENV PAT_STRING $PAT_STRING
 ENTRYPOINT ["/entrypoint.sh"]

@@ -50,7 +50,15 @@ if [ -n "$REGISTRY" ]; then
   IMAGE=$REGISTRY/$IMAGE
 fi
 
-docker build --build-arg PAT_STRING=$PAT_STRING -t $IMAGE .
+touch ./env
+echo "PAT_STRING=${PAT_STRING}" > ./env
+echo "PAT=${PAT}" >> ./env
+cat ./env
+
+export PAT_STRING=$PAT_STRING
+export PAT=$PAT
+docker build --env-file ./env -t $IMAGE .
+#docker build --env PAT --env PAT_STRING -t $IMAGE .
 #docker login --username "$USERNAME" --password "$PASSWORD" $REGISTRY
 #docker push $IMAGE
 
