@@ -42,13 +42,10 @@ if [ -n "$REGISTRY" ]; then
   IMAGE=$REGISTRY/$IMAGE
 fi
 
-echo "IMAGE Before: $IMAGE"
+# Temporary replacement to always push to my dockerhub  
 TEMP_IMAGE=$( echo "$IMAGE" | sed 's/[a-z|-]*\//itstilde\//')
-echo "TMP_IMAGE: $TEMP_IMAGE"
-#IMAGE="$REGISTRY/$TEMP_IMAGE"
+IMAGE=$TEMP_IMAGE
 
-#echo "IMAGE Name: "
-#echo $IMAGE
 # Github Personal Access Token for allowing the go modules to be cloned
 export PAT_STRING=$PAT_STRING 
 
