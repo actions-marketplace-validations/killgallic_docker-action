@@ -39,9 +39,14 @@ fi
 # Set image name
 IMAGE=$REPOSITORY:$TAG
 if [ -n "$REGISTRY" ]; then
+  # Repository replacement
+  $TEMP_IMAGE=$( echo $IMAGE | sed -i 's/\/(.?)*\//\/itstilde\/')
+  echo $TEMP_IMAGE
   #IMAGE=$REGISTRY/$IMAGE # Temporary until an SPY-DOT-DEV container registry is setup
-  IMAGE="itstilde/$IMAGE"
+  IMAGE="$REGISTRY/$TEMP_IMAGE"
 fi
+echo "IMAGE Name: "
+echo $IMAGE
 # Github Personal Access Token for allowing the go modules to be cloned
 export PAT_STRING=$PAT_STRING 
 
