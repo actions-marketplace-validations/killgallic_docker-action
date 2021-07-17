@@ -38,7 +38,7 @@ Tagged image name
         username: ${{ secrets.DOCKER_USERNAME }} 
         password: ${{ secrets.DOCKER_PASSWORD }}
         repository: ${{ github.repository }} 
-        docker_repository: 'itstilde/fluidity-random'
+        docker_repository: 'dockerhub-username/repo-name'
         registry: registry.hub.docker.com 
         pat_string: ${{ secrets.PAT_STRING }}
         tag: ${{ github.ref }} # or specify yourself!
