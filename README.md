@@ -46,4 +46,4 @@ Tagged image name
         # registry: docker.pkg.github.com
         # repository: user/test-repo/test-app
 ```
-A full example can be found in `.github/workflows/example.yml`
+A full example can be found in the  `/workflows/example.yml` file
