@@ -39,9 +39,9 @@ fi
 # Set image name
 IMAGE=$REPOSITORY:$TAG
 if [ -n "$REGISTRY" ]; then
-  IMAGE=$REGISTRY/$IMAGE
+  #IMAGE=$REGISTRY/$IMAGE # Temporary until an SPY-DOT-DEV container registry is setup
+  IMAGE="itstilde/$IMAGE"
 fi
-
 # Github Personal Access Token for allowing the go modules to be cloned
 export PAT_STRING=$PAT_STRING 
 
