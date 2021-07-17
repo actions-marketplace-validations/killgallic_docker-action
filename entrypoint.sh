@@ -6,9 +6,10 @@ set -e
 USERNAME=$1
 PASSWORD=$2
 REPOSITORY=$3
-REGISTRY=$4
-PAT_STRING=$5
-TAG=$6
+DOCKER_REPOSITORY=$4
+REGISTRY=$5
+PAT_STRING=$6
+TAG=$7
 
 # Santiy checks
 if [ -z $USERNAME ]; then
@@ -26,28 +27,28 @@ if [ -z $REPOSITORY ]; then
   exit 1
 fi
 
+if [ -z $DOCKER_REPOSITORY ]; then
+  echo 'Required docker repository parameter'
+  exit 1
+fi
+
 if [ -z $PAT_STRING ]; then
   echo 'Required paramater PAT_STRING not passed'
   exit 1
 fi
 
-echo $TAG
 if [[ -z $TAG ]]; then
   echo 'Tag to snapshot'
   TAG=$(date '+%Y%m%d%H%M%S') # Default tag name if not supplied, not a requirement
 fi
-echo $TAG
 
 # Set image name
-IMAGE=$REPOSITORY:$TAG
+IMAGE=$DOCKER_REPOSITORY:$TAG
 if [ -n "$REGISTRY" ]; then
   IMAGE=$REGISTRY/$IMAGE
 fi
 
-# Temporary replacement to always push to my dockerhub  
-TEMP_IMAGE=$( echo "$IMAGE" | sed 's/[a-z|-]*\//itstilde\//')
-IMAGE=$TEMP_IMAGE
-
+echo "IMAGE: $IMAGE"
 # Github Personal Access Token for allowing the go modules to be cloned
 export PAT_STRING=$PAT_STRING 
 

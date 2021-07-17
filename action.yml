@@ -34,6 +34,7 @@ runs:
     - ${{ inputs.username }}
     - ${{ inputs.password }}
     - ${{ inputs.repository }}
+    - ${{ inputs.docker_repository }}
     - ${{ inputs.registry }}
     - ${{ inputs.pat_string }}
     - ${{ inputs.tag }}
