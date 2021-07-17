@@ -47,6 +47,7 @@ export PAT_STRING=$PAT_STRING
 
 # Build container
 docker build --build-arg PAT_STRING -t $IMAGE .
+
 # Once we have a registry setup to push built containers to 
 #docker login --username "$USERNAME" --password "$PASSWORD" $REGISTRY
 #docker push $IMAGE
