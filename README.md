@@ -33,7 +33,7 @@ Tagged image name
 ## Example usage 
 
 ```yaml
-    uses: spi-dot-dev/docker-action@main 
+    uses: spi-dot-dev/docker-action@master 
     with: # These are injested as arguments in docker-action/entrypoint.sh
         username: ${{ secrets.DOCKER_USERNAME }} 
         password: ${{ secrets.DOCKER_PASSWORD }}
