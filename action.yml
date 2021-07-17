@@ -6,22 +6,25 @@ branding:
   color: 'purple'
 inputs:
   username:
-    description: 'Registry username'
+    description: 'Dockerhub Registry username'
     required: true
   password:
-    description: 'Registry password'
+    description: 'Dockerhub Registry password'
     required: true
   repository:
-    description: 'Repository name'
+    description: 'Github Repository name'
     required: true
-  registry:
-    description: 'Registry hostname'
+  docker_repository:
+    description: 'Docker repository name to push to'
+    required: true
+   registry:
+    description: 'Docker Registry hostname'
     required: true
   pat_string:
-    description: 'Personal Access string for .git-configuration'
+    description: 'Personal Access string for .git-configuration to allow private repos to be  cloned'
     required: true
   tag:
-    description: 'Image tag'
+    description: 'Docker Image tag name'
     required: false
 
 outputs:
