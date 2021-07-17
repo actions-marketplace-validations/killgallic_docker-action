@@ -49,8 +49,8 @@ export PAT_STRING=$PAT_STRING
 docker build --build-arg PAT_STRING -t $IMAGE .
 
 # Once we have a registry setup to push built containers to 
-#docker login --username "$USERNAME" --password "$PASSWORD" $REGISTRY
-#docker push $IMAGE
+docker login --username "$USERNAME" --password "$PASSWORD" $REGISTRY
+docker push $IMAGE
 
 # This output then able to be used in the action.yml files using ${{steps.docker.outputs.image}}'
 echo ::set-output name=image::$IMAGE
