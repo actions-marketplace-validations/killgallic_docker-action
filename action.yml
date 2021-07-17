@@ -17,7 +17,7 @@ inputs:
   docker_repository:
     description: 'Docker repository name to push to'
     required: true
-   registry:
+  registry:
     description: 'Docker Registry hostname'
     required: true
   pat_string:
