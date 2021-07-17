@@ -5,44 +5,45 @@ This action publish docker image to your registry
 ## Inputs
 
 ### `username`
-**Required** Registry username to authentication.
+**Required** username for container registry authentication .
 
 ### `password`
-**Required** Registry password to authentication.
+**Required** password for container registry authentication.
 
 ### `repository`
-**Required** Repository on registry.
+**Required** Github repository name 
+
+### `docker_repository`
+**Required** Container registry repository name 
 
 ### `registry`
-If you didn't use dockerhub, pass registry hostname.
+**Required** Hostname of the container repository
+
+### `pat_string`
+**Required** Github Personal Access Token string in `https://[USERNAME]:[PERSONAL_ACCESS_TOKEN]@github.com` format 
 
 ### `tag`
-Image tag. If you don't want to set, it sets default snapshot tag(current time).
+Image tag. If you don't want to set, it is set to `latest`
 
 ## Outputs
 
 ### `image`
 Tagged image name
 
-## Example usage
+## Example usage 
 
-If you use dockerhub[https://hub.docker.com],
 ```yaml
-uses: zenato/docker-action@master
-with:
-    username: ${{ secrets.DOCKER_USERNAME }}
-    password: ${{ secrets.DOCKER_PASSWORD }}
-    repository: user/test-repo
-    tag: 1.0
+    uses: spi-dot-dev/docker-action@main 
+    with: # These are injested as arguments in docker-action/entrypoint.sh
+        username: ${{ secrets.DOCKER_USERNAME }} 
+        password: ${{ secrets.DOCKER_PASSWORD }}
+        repository: ${{ github.repository }} 
+        docker_repository: 'itstilde/fluidity-random'
+        registry: registry.hub.docker.com 
+        pat_string: ${{ secrets.PAT_STRING }}
+        tag: ${{ github.ref }} # or specify yourself!
+        # To use github's container repository replace
+        # registry: docker.pkg.github.com
+        # repository: user/test-repo/test-app
 ```
-
-Other registry,
-```yaml
-uses: zenato/docker-action@master
-with:
-    username: ${{ secrets.DOCKER_USERNAME }}
-    password: ${{ secrets.DOCKER_PASSWORD }}
-    repository: user/test-repo/test-app
-    registry: docker.pkg.github.com
-    tag: 1.0
-```
+A full example can be found in `.github/workflows/example.yml`
