@@ -2,63 +2,54 @@
 
 set -e
 
+# These variables are set in the docker action in the repository that's getting built.
 USERNAME=$1
 PASSWORD=$2
 REPOSITORY=$3
-PAT=$4
+REGISTRY=$4
 PAT_STRING=$5
-REGISTRY=$6
-TAG=$7
+TAG=$6
 
-for i in $*; do 
-   echo $i 
-done
-#if [ -z $USERNAME ]; then
-#  echo 'Required username parameter'
-#  exit 1
-#fi
+# Santiy checks
+if [ -z $USERNAME ]; then
+  echo 'Required username parameter'
+  exit 1
+fi
 
-#if [ -z $PASSWORD ]; then
-#  echo 'Required password parameter'
-#  exit 1
-#fi
+if [ -z $PASSWORD ]; then
+  echo 'Required password parameter'
+  exit 1
+fi
 
 if [ -z $REPOSITORY ]; then
   echo 'Required repository parameter'
   exit 1
 fi
 
-if [[ -z $TAG ]]; then
-  echo 'Tag to snapshot'
-  TAG=$(date '+%Y%m%d%H%M%S')
-fi
-
-if [ -z $PAT ]; then
-  echo 'Required paramater PAT not passed'
-  exit 1
-fi
-
 if [ -z $PAT_STRING ]; then
   echo 'Required paramater PAT_STRING not passed'
   exit 1
-else
-  echo "PAT STRING: ${PAT_STRING}"
 fi
 
+if [[ -z $TAG ]]; then
+  echo 'Tag to snapshot'
+  TAG=$(date '+%Y%m%d%H%M%S') # Default tag name if not supplied, not a requirement
+fi
+
+# Set image name
 IMAGE=$REPOSITORY:$TAG
 if [ -n "$REGISTRY" ]; then
   IMAGE=$REGISTRY/$IMAGE
 fi
 
-touch ./env
-echo "PAT_STRING=${PAT_STRING}" > ./env
-echo "PAT=${PAT}" >> ./env
-cat ./env
+# Github Personal Access Token for allowing the go modules to be cloned
+export PAT_STRING=$PAT_STRING 
 
-export PAT_STRING=$PAT_STRING
-export PAT=$PAT
-docker build --build-arg PAT --build-arg PAT_STRING -t $IMAGE .
+# Build container
+docker build --build-arg PAT_STRING -t $IMAGE .
+# Once we have a registry setup to push built containers to 
 #docker login --username "$USERNAME" --password "$PASSWORD" $REGISTRY
 #docker push $IMAGE
 
+# This output then able to be used in the action.yml files using ${{steps.docker.outputs.image}}'
 echo ::set-output name=image::$IMAGE
