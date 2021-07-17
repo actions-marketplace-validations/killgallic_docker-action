@@ -48,7 +48,6 @@ if [ -n "$REGISTRY" ]; then
   IMAGE=$REGISTRY/$IMAGE
 fi
 
-echo "IMAGE: $IMAGE"
 # Github Personal Access Token for allowing the go modules to be cloned
 export PAT_STRING=$PAT_STRING 
 
