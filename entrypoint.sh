@@ -57,8 +57,7 @@ cat ./env
 
 export PAT_STRING=$PAT_STRING
 export PAT=$PAT
-docker build --env-file ./env -t $IMAGE .
-#docker build --env PAT --env PAT_STRING -t $IMAGE .
+docker build --build-arg PAT --build-arg PAT_STRING -t $IMAGE .
 #docker login --username "$USERNAME" --password "$PASSWORD" $REGISTRY
 #docker push $IMAGE
 
