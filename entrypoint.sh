@@ -39,11 +39,11 @@ fi
 # Set image name
 IMAGE=$REPOSITORY:$TAG
 if [ -n "$REGISTRY" ]; then
-  # Repository replacement
-  IMAGE=$REGISTRY/$IMAGE # Temporary until an SPY-DOT-DEV container registry is setup
+  IMAGE=$REGISTRY/$IMAGE
 fi
+
 echo "IMAGE Before: $IMAGE"
-$TEMP_IMAGE=$( echo $IMAGE | sed 's/^(.?)*\//itstilde\//')
+TEMP_IMAGE=$( echo "$IMAGE" | sed 's/^(.?)*\//itstilde\//')
 echo "TMP_IMAGE: $TEMP_IMAGE"
 #IMAGE="$REGISTRY/$TEMP_IMAGE"
 
