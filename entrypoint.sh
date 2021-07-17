@@ -31,6 +31,7 @@ if [ -z $PAT_STRING ]; then
   exit 1
 fi
 
+echo $TAG
 if [[ -z $TAG ]]; then
   echo 'Tag to snapshot'
   TAG=$(date '+%Y%m%d%H%M%S') # Default tag name if not supplied, not a requirement
